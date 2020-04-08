@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="confirmationForm" name="confirmationForm" action="/oauth/authorize" method="post"><input
+        name="user_oauth_approval" value="true" type="hidden">
+    <ul>
+        <li>
+            <div class="form-group">
+                scope.read: <input type="radio" name="scope.read" value="true" checked>
+            </div>
+        </li>
+    </ul>
+    <label><input name="authorize" value="Authorize" type="submit"></label></form>
+</body>
+</body>
+</html>

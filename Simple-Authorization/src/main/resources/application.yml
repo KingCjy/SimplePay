@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
