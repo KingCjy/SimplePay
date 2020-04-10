@@ -1,19 +1,21 @@
-server:
-  port: 8081
-
 spring:
   h2:
     console:
       enabled: true
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: none
-    show-sql: true
-  devtools:
-    livereload:
-      enabled: true
-  thymeleaf:
-    cache: false
+
+security:
+  oauth2:
+    client:
+      client-id: simple-user
+      client-secret: simple-user-secret
+    resource:
+      token-info-uri: http://localhost:8081/oauth/check_token
+server:
+  port: 5000
 
 
 ---

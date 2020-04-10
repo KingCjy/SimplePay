@@ -1,30 +1,36 @@
-package me.kingcjy.simple.authorization.controller;
+package me.kingcjy.simple.memo.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import me.kingcjy.simple.authorization.model.OAuthToken;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.core.annotation.Order;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/oauth")
-public class OAuth2TempController {
+public class ViewController {
 
-    private final ObjectMapper objectMapper;
-    private final RestTemplate restTemplate;
+    @Value("simple.returnUri")
+    private String returnUri;
 
-    @GetMapping("/callback")
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        return "dashboard";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/oauth/callback")
     public OAuthToken callback(@RequestParam String code) throws JsonProcessingException {
         String credentials = "simple-user:simple-user-secret";
         String encodedCredentials = new String(Base64.encodeBase64(credentials.getBytes()));

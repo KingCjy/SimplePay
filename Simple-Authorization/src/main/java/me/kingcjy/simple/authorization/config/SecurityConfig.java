@@ -19,6 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(customAuthenticationProvider);
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

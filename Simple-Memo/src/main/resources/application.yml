@@ -15,10 +15,6 @@ spring:
   thymeleaf:
     cache: false
 
-security:
-  oauth2:
-    client:
-      client-id: simple
-      client-secret: simple-secret
-    resource:
-      token-info-uri: http://localhost:8081/oauth/check_token
+
+simple:
+  return_uri: http://localhost:8082/oauth/callback

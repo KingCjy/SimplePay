@@ -23,7 +23,6 @@ public class User implements UserDetails {
     private String uid;
     private String name;
     private String password;
-    private String provider;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default

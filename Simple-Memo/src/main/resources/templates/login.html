@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple-Memo</title>
+</head>
+<body>
+<buttom id="simpleLogin">Simple 로그인</buttom>
+
+
+<script>
+    const loginBtn = document.getElementById("simpleLogin");
+
+    loginBtn.addEventListener("click", simpleLogin)
+
+    function simpleLogin() {
+
+        const url = `http://localhost:8081/oauth/authorize?client_id=simple-memo&redirect_uri=http://localhost:8082/`
+    }
+
+</script>
+</body>
+</html>
