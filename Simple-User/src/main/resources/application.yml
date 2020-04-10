@@ -13,7 +13,7 @@ security:
       client-id: simple-user
       client-secret: simple-user-secret
     resource:
-      token-info-uri: http://localhost:8081/oauth/check_token
+      token-info-uri: http://local.simple.com:8081/oauth/check_token
 server:
   port: 5000
 

@@ -15,6 +15,10 @@ spring:
   thymeleaf:
     cache: false
 
+custom:
+  oauth2:
+    simple:
+      client-id: simple-user
+      client-secret: simple-user-secret
 
-simple:
-  return_uri: http://localhost:8082/oauth/callback
+

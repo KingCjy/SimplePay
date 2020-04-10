@@ -11,5 +11,6 @@
     <modules>
         <module>simple-authorization</module>
         <module>simple-memo</module>
+        <module>simple-user</module>
     </modules>
 </project>

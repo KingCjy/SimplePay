@@ -41,4 +41,11 @@ public class ObjectMapperTest {
     public void encodeTest() {
         System.out.printf("testSecret : %s\n", passwordEncoder.encode("testSecret"));
     }
+
+
+    @Test
+    public void token_test() {
+
+    }
+
 }

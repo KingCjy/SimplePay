@@ -26,6 +26,7 @@ public class OAuth2TempController {
 
     @GetMapping("/callback")
     public OAuthToken callback(@RequestParam String code) throws JsonProcessingException {
+
         String credentials = "simple-user:simple-user-secret";
         String encodedCredentials = new String(Base64.encodeBase64(credentials.getBytes()));
 
