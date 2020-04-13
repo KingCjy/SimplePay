@@ -1,4 +1,4 @@
-package me.kingcjy.simple.memo.controller;
+package me.kingcjy.simple.memo.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +31,6 @@ public class ViewController {
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
-    }
-
-    @ResponseBody
-    @GetMapping("/simple")
-    public String simple() {
-        return "simple";
     }
 
 }

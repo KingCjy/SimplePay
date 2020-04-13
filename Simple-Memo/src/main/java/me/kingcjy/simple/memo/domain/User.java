@@ -12,22 +12,16 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id @GeneratedValue
-    @Column(name = "user_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String uid;
+    private String email;
     private String name;
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
 
     @Builder
-    public User(String uid, String name, String password, SocialType socialType) {
-        this.uid = uid;
+    public User(String email, String name) {
+        this.email = email;
         this.name = name;
-        this.password = password;
-        this.socialType = socialType;
     }
 }

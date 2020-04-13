@@ -7,13 +7,13 @@ spring:
       enabled: true
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: create
+
   devtools:
     livereload:
       enabled: true
   thymeleaf:
     cache: false
+
 
 custom:
   oauth2:
@@ -21,4 +21,14 @@ custom:
       client-id: simple-user
       client-secret: simple-user-secret
 
+---
 
+spring:
+  profiles: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/simple-memo?useSSL=false&serverTimezone=Asia/Seoul&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
+      username: root
+      password:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      maximum-pool-size: 20

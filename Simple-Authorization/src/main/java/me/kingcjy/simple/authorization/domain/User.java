@@ -18,7 +18,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long id;
 
     private String uid;

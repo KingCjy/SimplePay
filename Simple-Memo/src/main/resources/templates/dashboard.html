@@ -6,14 +6,129 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple Memo</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        .delete {
+            cursor: pointer;
+            margin-left: 20px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <script>
-        const accessToken = sessionStorage.getItem("access_token");
+<nav>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/logout">로그아웃</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="padding-top: 20px;">
+    <div class="row">
+        <form id="addMemo" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="memo" class="materialize-textarea"></textarea>
+                    <label for="memo">Memo</label>
+                </div>
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        등록
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-        if(accessToken == null) {
-            location.replace("/login")
-        }
-    </script>
+    <div id="memos" class="row">
+    </div>
+</div>
+<script>
+    document.getElementById("addMemo").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let contents = document.getElementById("memo").value;
+
+        fetch('/api/v1/memos', {
+            credentials: 'same-origin',
+            method: 'POST',
+            body: JSON.stringify({contents: contents}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(function(response) {
+                addMemoElement(response.body.id, contents)
+            })
+        .catch(error => {
+            console.log(error);
+        })
+    })
+
+    function addMemoElement(id, contents) {
+        var div = document.createElement("div");
+        div.className = "col s12";
+        div.id = "memo" + id;
+
+        var p = document.createElement("p")
+        p.className = "flow-text";
+
+        var text = document.createTextNode(contents);
+
+        var xSpan = document.createElement("span")
+        xSpan.className = "delete";
+        xSpan.id = 'delete' + id;
+        xSpan.setAttribute("data-idx", id)
+
+        var spanText = document.createTextNode("X");
+
+        xSpan.appendChild(spanText);
+
+        p.appendChild(text);
+        p.appendChild(xSpan);
+        div.appendChild(p);
+
+        document.getElementById("memos").prepend(div);
+
+        document.getElementById(xSpan.id).addEventListener('click', function() {
+            fetch('/api/v1/memos/' + id, {
+                credentials: 'same-origin',
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+            .then(response => {
+                document.getElementById(div.id).remove();
+            })
+        })
+    }
+
+    function getMemos() {
+        fetch('/api/v1/memos', {
+            credentials: 'same-origin',
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(function(response) {
+                for(var i in response.body) {
+                    addMemoElement(response.body[i].id, response.body[i].contents);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    getMemos()
+
+</script>
 </body>
 </html>
