@@ -38,6 +38,9 @@
                     <button class="btn waves-effect waves-light" type="submit" name="action">
                         등록
                     </button>
+                    <button class="btn waves-effect waves-light" type="button" name="abc" id="pay">
+                        Pay Test
+                    </button>
                 </div>
             </div>
         </form>
@@ -46,6 +49,13 @@
     <div id="memos" class="row">
     </div>
 </div>
+
+<form name="orderForm" method="post">
+    <input type="hidden" name="userKey" value="USER1234">
+    <input type="hidden" name="orderKey" value="ORDER1234">
+    <input type="hidden" name="productName" value="나이키 르브론 17 로우">
+    <input type="hidden" name="totalPayAmount" value="191000">
+</form>
 <script>
     document.getElementById("addMemo").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -129,6 +139,37 @@
 
     getMemos()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById('pay').addEventListener('click', function(e) {
+        window.open("", "Simple Pay", "width = 500, height = 500, top = 100, left = 200, location = no")
+
+        orderForm.target = "Simple Pay"
+        orderForm.action = "http://local.simple-pay.com:8083/payment"
+        orderForm.submit()
+
+    })
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   h2:
@@ -18,8 +18,8 @@ spring:
 custom:
   oauth2:
     simple:
-      client-id: simple-memo
-      client-secret: simple-memo-secret
+      client-id: simple-pay
+      client-secret: simple-pay-secret
 
 ---
 
@@ -27,7 +27,7 @@ spring:
   profiles: local
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://localhost:3306/simple-memo?useSSL=false&serverTimezone=Asia/Seoul&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
+      jdbc-url: jdbc:mysql://localhost:3306/simple-pay?useSSL=false&serverTimezone=Asia/Seoul&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
       username: root
       password:
       driver-class-name: com.mysql.cj.jdbc.Driver

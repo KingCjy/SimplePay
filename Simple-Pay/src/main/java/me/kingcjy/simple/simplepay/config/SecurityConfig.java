@@ -1,10 +1,10 @@
-package me.kingcjy.simple.memo.config;
+package me.kingcjy.simple.simplepay.config;
 
-import lombok.extern.java.Log;
-import me.kingcjy.simple.memo.domain.SocialType;
-import me.kingcjy.simple.memo.domain.User;
-import me.kingcjy.simple.memo.domain.UserRepository;
-import me.kingcjy.simple.memo.oauth.CustomOAuth2Provider;
+
+import me.kingcjy.simple.simplepay.domain.SocialType;
+import me.kingcjy.simple.simplepay.domain.User;
+import me.kingcjy.simple.simplepay.domain.UserRepository;
+import me.kingcjy.simple.simplepay.oauth.CustomOAuth2Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
@@ -14,14 +14,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**").permitAll()
                     .antMatchers("/simple").hasAnyAuthority(SocialType.SIMPLE.getRoleType())
-                    .antMatchers("/api/v1/memos/**").permitAll()
+                    .antMatchers("/payment").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
@@ -56,13 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .headers().frameOptions().disable()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+                .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/oauth2/authorization/simple"))
                 .and()
-                .formLogin().loginPage("/login").successForwardUrl("/dashboard")
+                .formLogin()
                 .and()
                 .logout()
                     .logoutUrl("/logout")
-                    .logoutSuccessUrl("/dashboard")
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
                 .and()
@@ -81,8 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .collect(Collectors.toList());
 
         registrations.add(CustomOAuth2Provider.SIMPLE.getBuilder("simple")
-                .clientId("simple-memo")
-                .clientSecret("simple-memo-secret")
+                .clientId("simple-pay")
+                .clientSecret("simple-pay-secret")
                 .jwkSetUri("test").build());
 
         return new InMemoryClientRegistrationRepository(registrations);
@@ -117,7 +115,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 userRepository.save(user);
             }
 
-            response.sendRedirect("/dashboard");
+            response.sendRedirect("/login/finish");
         }
     }
 }
