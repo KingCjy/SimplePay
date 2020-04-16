@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>카드 정보 입력 : Simple Pay</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">카드정보</a>
+    </div>
+</nav>
+<div class="container" style="padding-top: 20px;">
+    <div class="row">
+        <form id="addMemo" class="col s12">
+            <div class="row">
+                <div class="input-field col s3">
+                    <input id="card-number" type="text" class="validate" placeholder="0000" maxlength="4">
+                    <label for="card-number">카드 번호</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="card-number2" type="text" class="validate" placeholder="0000" maxlength="4">
+                </div>
+                <div class="input-field col s3">
+                    <input id="card-number3" type="text" class="validate" placeholder="0000" maxlength="4">
+                </div>
+                <div class="input-field col s3">
+                    <input id="card-number4" type="text" class="validate" placeholder="0000" maxlength="4">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="expired-date" type="text" class="validate" placeholder="MMYY" maxlength="4">
+                    <label for="expired-date">유효기간</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="cvc" type="text" class="validate" placeholder="카드 뒷면 3자리 숫자" maxlength="3">
+                    <label for="cvc">cvc</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" placeholder="비밀번호 앞 2자리 숫자" maxlength="2">
+                    <label for="password">유효기간</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light col s12" type="submit" name="action">등록</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="memos" class="row">
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>
