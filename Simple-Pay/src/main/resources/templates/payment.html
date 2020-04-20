@@ -66,35 +66,53 @@
 </div>
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
-    // var isLogin = /*[[ ${isLogin} ]]*/;
-    // var loginPopup;
-    //
-    // if(isLogin == false) {
-    //     showLoading();
-    //     loginPopup = window.open("/oauth2/authorization/simple", "Simple Pay", "width = 500, height = 500, top = 100, left = 200, location = no")
-    //
-    //     if(loginPopup == null) {
-    //         alert('팝업이 차단되었습니다. 팝업 설정을 허용하여 주십시오')
-    //     }
-    // }
-    //
-    // function loginFinish() {
-    //     hideLoading();
-    //     console.log("login success");
-    // }
-    //
-    // function showLoading() {
-    //     $('#loading').css({display: 'block'});
-    // }
-    //
-    // function hideLoading() {
-    //     $('#loading').css({display: 'none'});
-    // }
-/*]]>*/
+    var isLogin = /*[[ ${isLogin} ]]*/;
+    var loginPopup;
+
+    if(isLogin == false) {
+        showLoading();
+        loginPopup = window.open("/oauth2/authorization/simple", "Simple Pay", "width = 500, height = 500, top = 100, left = 200, location = no")
+
+        if(loginPopup == null) {
+            alert('팝업이 차단되었습니다. 팝업 설정을 허용하여 주십시오')
+        }
+    }
+
+    function loginFinish() {
+        hideLoading();
+        console.log("login success");
+    }
+    
+    function loadCards() {
+        fetch('/api/v1/cards', {
+            credentials: 'same-origin',
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    function showLoading() {
+        $('#loading').css({display: 'block'});
+    }
+
+    function hideLoading() {
+        $('#loading').css({display: 'none'});
+    }
 
     document.getElementById('registCard').addEventListener('click', function(e) {
         window.open("/card/registration", "카드 정보 입력 : Simple 페이", "width = 500, height = 450, top = 100, left = 200, location = no")
     })
+/*]]>*/
+
 </script>
 
 

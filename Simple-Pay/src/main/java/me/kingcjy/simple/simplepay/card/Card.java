@@ -18,7 +18,7 @@ public class Card {
     private Long id;
 
     private String cardNumber;
-    private String cvv;
+    private String cvc;
 
     private String password;
 
@@ -31,7 +31,7 @@ public class Card {
     @Builder
     public Card(String cardNumber, String cvc, String password, LocalDate expiredDate) {
         this.cardNumber = cardNumber;
-        this.cvv = cvc;
+        this.cvc = cvc;
         this.password = password;
         this.expiredDate = expiredDate;
     }
