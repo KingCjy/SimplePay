@@ -12,5 +12,6 @@
         <module>simple-authorization</module>
         <module>simple-memo</module>
         <module>simple-user</module>
+        <module>simple-pay</module>
     </modules>
 </project>

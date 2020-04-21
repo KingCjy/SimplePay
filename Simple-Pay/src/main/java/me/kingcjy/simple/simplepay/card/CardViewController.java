@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/card")
 public class CardViewController {
-
-
-
-
+    
     @GetMapping("/registration")
     public String registration(Model model) {
         return "card/registration";

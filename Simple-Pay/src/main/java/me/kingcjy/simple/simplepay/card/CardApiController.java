@@ -19,7 +19,6 @@ public class CardApiController {
 
     @GetMapping
     public ApiResult<?> findCards() {
-
-        return ApiResult.successResponse();
+        return ApiResult.successResponse(cardService.findCards());
     }
 }

@@ -17,6 +17,7 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
     private String cardNumber;
     private String cvc;
 
@@ -29,7 +30,8 @@ public class Card {
     private User user;
 
     @Builder
-    public Card(String cardNumber, String cvc, String password, LocalDate expiredDate) {
+    public Card(String name, String cardNumber, String cvc, String password, LocalDate expiredDate) {
+        this.name = name;
         this.cardNumber = cardNumber;
         this.cvc = cvc;
         this.password = password;

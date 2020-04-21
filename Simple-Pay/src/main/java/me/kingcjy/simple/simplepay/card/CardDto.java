@@ -14,11 +14,12 @@ public class CardDto {
         private String expiredDate;
         private String cvc;
         private String password;
-
+        private String name;
 
         public Card toEntity() {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             Card card = Card.builder()
+                    .name(name)
                     .cardNumber(cardNumber)
                     .cvc(cvc)
                     .password(password)
@@ -34,11 +35,13 @@ public class CardDto {
         private Long id;
         private String cardNumber;
         private String cvc;
+        private String name;
 
         public CardResponseDto(Card card) {
             this.id = card.getId();
             this.cardNumber = card.getCardNumber();
             this.cvc = card.getCvc();
+            this.name = card.getName();
         }
     }
 }
